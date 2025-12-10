@@ -4,10 +4,12 @@ import { RegisterRequest, login } from "@/lib/api/clientApi";
 import css from "./SignInPage.module.css";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useAuthStore } from "@/lib/store/authStore";
 
 const SignIn = () => {
   const router = useRouter();
   const [error, setError] = useState("");
+  const setUser = useAuthStore((state) => state.setUser);
 
   const handleSubmit = async (formData: FormData) => {
     const payload = Object.fromEntries(formData) as unknown as RegisterRequest;
@@ -15,6 +17,7 @@ const SignIn = () => {
     console.log(user);
 
     if (user) {
+      setUser(user);
       router.push("/profile");
     }
   };

@@ -36,14 +36,14 @@ export const fetchNotes = async (
   return res.data;
 };
 export const fetchNotesById = async (id: string): Promise<Note> => {
-  const { data } = await nextServer.get<Note>(`notes/${id}`);
+  const { data } = await nextServer.get<Note>(`/notes/${id}`);
   return data;
 };
-export const createNotes = async (data: FormValues) => {
+export const createNote = async (data: FormValues) => {
   const res = await nextServer.post<Note>("/notes", data);
   return res.data;
 };
-export const deleteNotes = async (id: string): Promise<Note> => {
+export const deleteNote = async (id: string): Promise<Note> => {
   const { data } = await nextServer.delete<Note>(`notes/${id}`);
   return data;
 };

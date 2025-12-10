@@ -12,10 +12,13 @@ export default function EditProfile() {
   const [email, setEmail] = useState<string>("");
   const router = useRouter();
   const setUser = useAuthStore((state) => state.setUser);
+  const [avatar, setAvatar] = useState("");
 
   useEffect(() => {
     getMe().then((user) => {
       setEmail(user.email ?? "");
+      setUserName(user.username ?? "");
+      setAvatar(user.avatar ?? "");
     });
   }, []);
 
@@ -40,7 +43,10 @@ export default function EditProfile() {
           <h1 className={css.formTitle}>Edit Profile</h1>
 
           <Image
-            src="https://ac.goit.global/fullstack/react/default-avatar.jpg"
+            src={
+              avatar ||
+              "https://ac.goit.global/fullstack/react/default-avatar.jpg"
+            }
             alt="User Avatar"
             width={120}
             height={120}
@@ -54,6 +60,7 @@ export default function EditProfile() {
                 id="username"
                 type="text"
                 className={css.input}
+                value={userName}
                 onChange={handleChangeName}
               />
             </div>
