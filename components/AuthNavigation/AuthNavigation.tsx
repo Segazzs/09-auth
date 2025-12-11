@@ -24,6 +24,7 @@ export default function AuthNavigation() {
           Profile
         </Link>
       </li>
+      <li className={css.navigationItem}>{user?.username}</li>
       <li>
         <button className={css.logoutButton} onClick={handleLogout}>
           Logout
